@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guias de Pós-Homologação — Stone Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --green-main: #94ea62;
+    --green-dark: #103024;
+    --green-secondary: #41d600;
+    --gray: #666d6a;
+    --green-pale: #edfce3;
+    --green-mid: #c5f5a0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--green-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e4f5da;
+    padding: 0 48px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--green-dark);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--green-main);
+    display: inline-block;
+    box-shadow: 0 0 0 4px rgba(148,234,98,0.25);
+  }
+  .nav-links {
+    display: flex; gap: 8px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; text-decoration: none;
+    color: var(--gray);
+    padding: 6px 14px; border-radius: 99px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .nav-links a:hover {
+    color: var(--green-dark);
+    background: var(--green-pale);
+    border-color: var(--green-mid);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: var(--green-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 120px 80px 80px;
+  }
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(148,234,98,0.15) 0%, transparent 70%);
+  }
+  .hero-bg-circle.c1 { width: 700px; height: 700px; top: -200px; right: -100px; }
+  .hero-bg-circle.c2 { width: 400px; height: 400px; bottom: -100px; left: 100px; background: radial-gradient(circle, rgba(65,214,0,0.1) 0%, transparent 70%); }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(148,234,98,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(148,234,98,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(148,234,98,0.12);
+    border: 1px solid rgba(148,234,98,0.3);
+    padding: 6px 16px; border-radius: 99px;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--green-main);
+    margin-bottom: 32px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-secondary); animation: pulse 2s infinite; }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero h1 span { color: var(--green-main); }
+
+  .hero-desc {
+    font-size: 1.1rem; line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px; max-width: 520px;
+  }
+
+  .hero-cards {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(148,234,98,0.2);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 14px;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.3s;
+    min-width: 180px;
+  }
+  .hero-card:hover {
+    background: rgba(148,234,98,0.1);
+    border-color: rgba(148,234,98,0.5);
+    transform: translateY(-3px);
+  }
+  .hero-card-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(148,234,98,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .hero-card-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+  .hero-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); }
+
+  /* ── SLIDE ── */
+  .slide {
+    padding: 100px 80px;
+    position: relative;
+  }
+  .slide:nth-child(even) { background: var(--green-pale); }
+  .slide:nth-child(odd)  { background: var(--white); }
+
+  .slide-header {
+    display: flex; align-items: flex-start; gap: 24px;
+    margin-bottom: 64px;
+  }
+  .slide-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem; font-weight: 800;
+    color: var(--green-main);
+    line-height: 1; flex-shrink: 0;
+    opacity: 0.35;
+  }
+  .slide-header-text {}
+  .slide-tag {
+    display: inline-block;
+    background: var(--green-dark);
+    color: var(--green-main);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 99px;
+    margin-bottom: 12px;
+  }
+  .slide h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    color: var(--green-dark);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .slide-subtitle {
+    font-size: 1rem; color: var(--gray); line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* ── SECTION BLOCKS ── */
+  .section-block {
+    margin-bottom: 48px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px; height: 20px;
+    background: var(--green-secondary);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid #e0f5cf;
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .card:hover {
+    border-color: var(--green-main);
+    box-shadow: 0 8px 32px rgba(148,234,98,0.15);
+    transform: translateY(-4px);
+  }
+  .card-accent {
+    position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(148,234,98,0.15), transparent 70%);
+  }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--green-pale);
+    border: 1px solid var(--green-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+  .card-body {
+    font-size: 0.875rem; color: var(--gray); line-height: 1.65;
+  }
+
+  /* ── STEPS ── */
+  .steps {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .step {
+    display: flex; gap: 20px;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px; top: 44px;
+    width: 2px; bottom: 0;
+    background: linear-gradient(to bottom, var(--green-main), transparent);
+  }
+  .step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--green-dark);
+    color: var(--green-main);
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; z-index: 1;
+  }
+  .step-content {
+    padding-bottom: 32px; flex: 1;
+  }
+  .step-content strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    color: var(--green-dark); margin-bottom: 6px;
+  }
+  .step-content p {
+    font-size: 0.875rem; color: var(--gray); line-height: 1.65;
+  }
+
+  /* ── ALERT / TIP ── */
+  .alert {
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-top: 24px;
+  }
+  .alert.warning {
+    background: #fffbe6;
+    border: 1px solid #ffe87a;
+  }
+  .alert.info {
+    background: var(--green-pale);
+    border: 1px solid var(--green-mid);
+  }
+  .alert.danger {
+    background: #fff0f0;
+    border: 1px solid #ffb3b3;
+  }
+  .alert-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .alert-text { font-size: 0.875rem; color: var(--green-dark); line-height: 1.65; }
+  .alert-text strong { font-weight: 600; }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid #e0f5cf;
+    padding: 20px 0;
+  }
+  .faq-item:first-child { border-top: 1px solid #e0f5cf; }
+  .faq-q {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    color: var(--green-dark);
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; gap: 16px;
+  }
+  .faq-badge {
+    background: var(--green-main);
+    color: var(--green-dark);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 99px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .faq-a {
+    font-size: 0.875rem; color: var(--gray); line-height: 1.65;
+    margin-top: 10px;
+  }
+
+  /* ── METHOD CARDS ── */
+  .method-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+  }
+  .method-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e0f5cf;
+    transition: all 0.3s;
+  }
+  .method-card:hover {
+    box-shadow: 0 12px 40px rgba(16,48,36,0.1);
+    transform: translateY(-4px);
+  }
+  .method-head {
+    background: var(--green-dark);
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .method-head-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(148,234,98,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .method-head-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--white);
+  }
+  .method-body { background: var(--white); padding: 24px; }
+  .method-step {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.85rem; color: var(--gray); line-height: 1.55;
+  }
+  .method-step-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green-secondary);
+    color: var(--green-dark);
+    font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── PILL LIST ── */
+  .pill-list {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 16px;
+  }
+  .pill {
+    background: var(--green-pale);
+    border: 1px solid var(--green-mid);
+    color: var(--green-dark);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 6px 16px; border-radius: 99px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-secondary); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--green-dark);
+    border-radius: 20px;
+    padding: 32px;
+    color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .highlight-box::after {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(148,234,98,0.2), transparent 70%);
+  }
+  .highlight-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--green-main);
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .highlight-box p {
+    font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.75);
+    position: relative; z-index: 1;
+  }
+
+  /* ── FOOTER SLIDE ── */
+  .footer-slide {
+    background: var(--green-dark);
+    padding: 80px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .footer-slide::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(148,234,98,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(148,234,98,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .footer-content { position: relative; z-index: 1; }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--white); margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--green-main); }
+  .footer-tagline { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 40px; }
+  .footer-tags {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .footer-tag {
+    background: rgba(148,234,98,0.1);
+    border: 1px solid rgba(148,234,98,0.2);
+    color: var(--green-main);
+    font-size: 0.8rem; padding: 6px 18px; border-radius: 99px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-main), transparent);
+    margin: 48px 0;
+    opacity: 0.3;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: fadeInUp 0.7s ease forwards;
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-cta {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(148,234,98,0.3);
+    display: flex; align-items: center; justify-content: center;
+    animation: bounce 1.8s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .slide { padding: 60px 24px; }
+    .footer-slide { padding: 60px 24px; }
+    .hero h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    Stone Co. <span style="font-weight:300; opacity:0.5; margin-left:4px;">Partner</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#autotef">AutoTEF</a></li>
+    <li><a href="#connect">Connect Stone</a></li>
+    <li><a href="#sdk">SDK Android</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content fade-in">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Guias de Pós-Homologação — 2025
+    </div>
+    <h1>Ative seus<br>produtos <span>Stone</span><br>sem erros.</h1>
+    <p class="hero-desc">
+      Documentação técnica para parceiros: tudo que você precisa para ativar AutoTEF, Connect Stone e SDK Android com segurança.
+    </p>
+    <div class="hero-cards">
+      <a href="#autotef" class="hero-card">
+        <div class="hero-card-icon">⚡</div>
+        <div>
+          <div class="hero-card-label">Guia 01</div>
+          <div class="hero-card-title">AutoTEF</div>
+        </div>
+      </a>
+      <a href="#connect" class="hero-card">
+        <div class="hero-card-icon">🔗</div>
+        <div>
+          <div class="hero-card-label">Guia 02</div>
+          <div class="hero-card-title">Connect Stone</div>
+        </div>
+      </a>
+      <a href="#sdk" class="hero-card">
+        <div class="hero-card-icon">📱</div>
+        <div>
+          <div class="hero-card-label">Guia 03</div>
+          <div class="hero-card-title">SDK Android</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-cta">
+    <span>Scroll</span>
+    <div class="scroll-arrow">↓</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 1 — AUTOTEF
+═══════════════════════════════════════ -->
+<section class="slide" id="autotef">
+  <div class="slide-header">
+    <div class="slide-number">01</div>
+    <div class="slide-header-text">
+      <span class="slide-tag">Pós-Homologação</span>
+      <h2>Guia de Ativação<br>AutoTEF</h2>
+      <p class="slide-subtitle">Oriente o parceiro na ativação da solução AutoTEF, garantindo que as permissões de Microtef estejam corretamente configuradas.</p>
+    </div>
+  </div>
+
+  <!-- Pré-requisitos -->
+  <div class="section-block">
+    <div class="section-title">Pré-requisitos de Ativação</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🏷️</div>
+        <div class="card-title">Stone Code Ativo</div>
+        <div class="card-body">O cliente deve possuir um Stone Code ativo e válido antes de iniciar qualquer processo de ativação do AutoTEF.</div>
+      </div>
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🔑</div>
+        <div class="card-title">SAK de Microtef (MicroPOS)</div>
+        <div class="card-body">Essencial para o funcionamento. <strong>Sem a SAK de Microtef habilitada, a ativação falhará.</strong> Verifique este item com atenção.</div>
+      </div>
+    </div>
+    <div class="alert warning">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-text"><strong>Atenção:</strong> A ausência da SAK de Microtef é a causa mais comum de falha na ativação. Valide este pré-requisito antes de prosseguir.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Fluxos -->
+  <div class="section-block">
+    <div class="section-title">Fluxos de Disponibilização</div>
+    <div class="cards-grid">
+      <div class="card" style="border-color: var(--green-main);">
+        <div class="card-accent"></div>
+        <div class="card-icon">✅</div>
+        <div class="card-title">Novo Credenciamento <span style="background:var(--green-main);color:var(--green-dark);font-size:0.65rem;padding:2px 8px;border-radius:99px;margin-left:6px;font-weight:700;">Recomendado</span></div>
+        <div class="card-body">O parceiro ou time de Inbound credencia o cliente diretamente com o perfil AutoTEF (com micropos). O Stone Code já nasce com as chaves corretas, evitando erros de permissão.</div>
+      </div>
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🔄</div>
+        <div class="card-title">Migração TEF → AutoTEF</div>
+        <div class="card-body">Para clientes que já usam TEF e desejam manter as taxas atuais. O parceiro acessa o <strong>Partner Hub</strong> e inclui a chave do Micro POS no cadastro do lojista.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Passo a Passo -->
+  <div class="section-block">
+    <div class="section-title">Passo a Passo Técnico</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Envio do Stone Code</strong>
+          <p>O cliente envia o Stone Code para o parceiro responsável pela ativação.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Configuração no Sistema Local</strong>
+          <p>O parceiro realiza a configuração no sistema local do cliente utilizando os arquivos de produção fornecidos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Troubleshooting (se falhar)</strong>
+          <p>Se a ativação falhar, o cliente deve ligar para a <strong>Central de Relacionamento</strong> e solicitar especificamente a <em>"Habilitação da SAK de Microtef"</em>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Suporte -->
+  <div class="section-block">
+    <div class="section-title">Suporte Escalado</div>
+    <div class="highlight-box">
+      <h3>🎫 Abertura de Ticket via Guru</h3>
+      <p>Se o problema persistir após a ativação da SAK, abra um ticket via <strong>Guru</strong> no Partner Hub direcionado ao time de <strong>Integrações</strong>. Inclua o Stone Code do cliente e o histórico de tentativas de ativação para agilizar o atendimento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 2 — CONNECT STONE
+═══════════════════════════════════════ -->
+<section class="slide" id="connect">
+  <div class="slide-header">
+    <div class="slide-number">02</div>
+    <div class="slide-header-text">
+      <span class="slide-tag">Pós-Homologação</span>
+      <h2>Guia de Habilitação<br>Connect Stone</h2>
+      <p class="slide-subtitle">Instrua o parceiro sobre como habilitar a solução Connect Stone para clientes da base via Partner Hub.</p>
+    </div>
+  </div>
+
+  <!-- Partner Hub -->
+  <div class="section-block">
+    <div class="section-title">Gestão via Partner Hub</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🏢</div>
+        <div class="card-title">Ferramenta Central</div>
+        <div class="card-body">O Partner Hub é a plataforma central para gerir a carteira e o status de todas as integrações. A liberação do Connect Stone é feita diretamente na aba de integrações.</div>
+      </div>
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🔓</div>
+        <div class="card-title">Acesso Direto</div>
+        <div class="card-body">A habilitação não exige chamado ou aprovação manual. O parceiro tem autonomia para liberar o produto para os lojistas de sua carteira a qualquer momento.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Passo a Passo -->
+  <div class="section-block">
+    <div class="section-title">Passo a Passo para Liberação</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Acesse o Partner Hub</strong>
+          <p>Entre com suas credenciais de parceiro no Partner Hub.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Navegue até Integrações</strong>
+          <p>Vá em <strong>Integrações → Minhas Integrações</strong> no menu principal.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Selecione o Connect Stone</strong>
+          <p>Localize e selecione a solução <strong>Connect Stone homologada</strong> na lista de integrações disponíveis.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Adicionar Lojista</strong>
+          <p>Clique em <strong>"Adicionar Lojista"</strong> para iniciar o processo de habilitação do produto para o cliente.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Inserir Dados e Coletar Chave</strong>
+          <p>Insira os dados do cliente para habilitar o produto e colete a <strong>chave necessária</strong> para a ativação final no sistema do lojista.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <div class="section-block">
+    <div class="section-title">FAQ Rápido</div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Após a homologação, quando o produto fica disponível para liberação no Hub?</span>
+        <span class="faq-badge">Prazo</span>
+      </div>
+      <div class="faq-a">O produto pode levar <strong>até 24 horas</strong> para aparecer disponível para liberação no Partner Hub após a conclusão da homologação.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Onde encontrar documentação e suporte para dúvidas?</span>
+        <span class="faq-badge">Suporte</span>
+      </div>
+      <div class="faq-a">Consulte a seção de <strong>documentação e treinamentos</strong> disponível dentro do próprio Partner Hub. É a fonte mais atualizada e oficial para parceiros.</div>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">💡</div>
+    <div class="alert-text"><strong>Dica:</strong> Se o Connect Stone não aparecer no Hub após 24h, verifique se a homologação foi finalizada e aprovada antes de abrir chamado de suporte.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 3 — SDK ANDROID
+═══════════════════════════════════════ -->
+<section class="slide" id="sdk">
+  <div class="slide-header">
+    <div class="slide-number">03</div>
+    <div class="slide-header-text">
+      <span class="slide-tag">Pós-Homologação</span>
+      <h2>Guia de Distribuição<br>SDK Android</h2>
+      <p class="slide-subtitle">Detalha as três formas de disponibilizar um aplicativo Android homologado para os terminais Smart da Stone.</p>
+    </div>
+  </div>
+
+  <!-- Ciclo de Vida -->
+  <div class="section-block">
+    <div class="section-title">Ciclo de Vida do App</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🧪</div>
+        <div class="card-title">Fase Piloto</div>
+        <div class="card-body">Após a homologação, o app entra automaticamente em fase de <strong>Piloto</strong>. Nesta etapa, o app é validado em ambiente controlado antes da liberação geral.</div>
+      </div>
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">🚀</div>
+        <div class="card-title">Fase Rollout</div>
+        <div class="card-body">Após validação do Piloto, o app é liberado para <strong>Rollout</strong> — a disponibilização geral para toda a base de lojistas elegíveis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Métodos de Liberação -->
+  <div class="section-block">
+    <div class="section-title">Métodos de Liberação (Escolha um)</div>
+    <div class="method-grid">
+
+      <div class="method-card">
+        <div class="method-head">
+          <div class="method-head-icon">🛒</div>
+          <div class="method-head-title">Via Funil de Vendas</div>
+        </div>
+        <div class="method-body">
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>Realizado durante o credenciamento de um <strong>novo cliente</strong>.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>Ideal para novos lojistas que já entram na base com o app instalado.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>Processo integrado ao fluxo de onboarding do cliente.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-head">
+          <div class="method-head-icon">📋</div>
+          <div class="method-head-title">Via Lista de Lojistas</div>
+        </div>
+        <div class="method-body">
+          <div class="method-step">
+            <div class="method-step-dot">1</div>
+            <span>Menu: <strong>Lojistas → Pagamento → Listar Lojistas</strong></span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">2</div>
+            <span>Busque pelo <strong>CNPJ</strong> do cliente.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">3</div>
+            <span>Acesse a aba <strong>Ativação</strong> e selecione o App.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">4</div>
+            <span>Clique em <strong>Salvar</strong> para confirmar.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-head">
+          <div class="method-head-icon">⚙️</div>
+          <div class="method-head-title">Via Ativação de Produto</div>
+        </div>
+        <div class="method-body">
+          <div class="method-step">
+            <div class="method-step-dot">1</div>
+            <span>Menu: <strong>Integrações → Ativação de Produto</strong></span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">2</div>
+            <span>Selecione o <strong>App</strong> na lista disponível.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">3</div>
+            <span>Clique em <strong>Adicionar Lojistas</strong>.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">4</div>
+            <span>Insira o <strong>Stone Code</strong> do cliente e confirme.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Instalação no Terminal -->
+  <div class="section-block">
+    <div class="section-title">Instalação no Terminal (Maquininha)</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">📥</div>
+        <div class="card-title">Onde Encontrar o App?</div>
+        <div class="card-body">Após a liberação, o app aparecerá na maquininha em: <strong>Menu → Apps</strong>. O cliente pode baixar diretamente pelo terminal.</div>
+      </div>
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-icon">⏱️</div>
+        <div class="card-title">Tempo de Sincronização</div>
+        <div class="card-body">Após a liberação no Hub, o app aparece na máquina em <strong>até 3 horas</strong>. Na prática, geralmente é imediato ou em poucos minutos.</div>
+      </div>
+    </div>
+    <div class="alert info" style="margin-top:20px;">
+      <div class="alert-icon">💡</div>
+      <div class="alert-text"><strong>Dica:</strong> Se o app não aparecer no prazo esperado, <strong>reinicie o terminal</strong> ou force a busca por atualizações nas configurações da maquininha.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Verificação de Hardware -->
+  <div class="section-block">
+    <div class="section-title">Verificação de Hardware</div>
+    <div class="highlight-box">
+      <h3>🖥️ Compatibilidade do Terminal</h3>
+      <p>Certifique-se de que o <strong>modelo da maquininha do cliente</strong> é compatível com o modelo informado e testado durante o processo de homologação. Incompatibilidades de hardware podem causar falhas na instalação ou no funcionamento do app mesmo após a liberação correta no Hub.</p>
+    </div>
+
+    <div class="pill-list" style="margin-top:24px;">
+      <div class="pill"><span class="pill-dot"></span> Modelo homologado = modelo em campo</div>
+      <div class="pill"><span class="pill-dot"></span> Verificar versão do firmware</div>
+      <div class="pill"><span class="pill-dot"></span> Terminal compatível com SDK</div>
+      <div class="pill"><span class="pill-dot"></span> Terminal Smart (não convencional)</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-slide">
+  <div class="footer-content">
+    <div class="footer-logo"><span>Stone</span> Partner Hub</div>
+    <div class="footer-tagline">Guias de Pós-Homologação — Equipe de Integrações</div>
+    <div class="footer-tags">
+      <span class="footer-tag">AutoTEF</span>
+      <span class="footer-tag">Connect Stone</span>
+      <span class="footer-tag">SDK Android</span>
+      <span class="footer-tag">Partner Hub</span>
+      <span class="footer-tag">Integrações</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'none';
+        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .step, .method-card, .faq-item, .alert, .highlight-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
