@@ -109,7 +109,8 @@
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
     color: var(--white);
-    line-height: 1.05;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 24px;
   }
   .hero h1 span { color: var(--green-main); }
@@ -180,7 +181,8 @@
     font-size: clamp(1.8rem, 3vw, 2.8rem);
     font-weight: 800;
     color: var(--green-dark);
-    line-height: 1.1;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     margin-bottom: 12px;
   }
   .slide-subtitle {
@@ -453,6 +455,46 @@
     font-size: 0.8rem; padding: 6px 18px; border-radius: 99px;
   }
 
+  /* ── GURU SUPPORT ── */
+  .guru-support {
+    display: flex; gap: 24px; align-items: stretch;
+  }
+  .guru-img-card {
+    border-radius: 20px;
+    min-width: 200px; max-width: 240px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px dashed rgba(148,234,98,0.35);
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .guru-img-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: 18px;
+  }
+  /* placeholder visível só quando não há img */
+  .guru-img-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 32px 20px; width: 100%; height: 100%; min-height: 160px;
+    color: var(--gray); font-size: 0.8rem; text-align: center; line-height: 1.5;
+  }
+  .guru-img-placeholder span { font-size: 2rem; opacity: 0.4; }
+  @media (max-width: 768px) {
+    .guru-support { flex-direction: column; }
+    .guru-img-card { max-width: 100%; min-height: 180px; }
+  }
+
+  /* ── LINK INLINE ── */
+  .link-green {
+    color: var(--green-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(65,214,0,0.4);
+    transition: border-color 0.2s;
+  }
+  .link-green:hover { border-color: var(--green-secondary); }
+
   /* ── DIVIDER ── */
   .divider {
     height: 2px;
@@ -528,7 +570,7 @@
   <div class="hero-content fade-in">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      Guias de Pós-Homologação — 2025
+      Guias de Pós-Homologação — 2026
     </div>
     <h1>Ative seus<br>produtos <span>Stone</span><br>sem erros.</h1>
     <p class="hero-desc">
@@ -611,13 +653,13 @@
         <div class="card-accent"></div>
         <div class="card-icon">✅</div>
         <div class="card-title">Novo Credenciamento <span style="background:var(--green-main);color:var(--green-dark);font-size:0.65rem;padding:2px 8px;border-radius:99px;margin-left:6px;font-weight:700;">Recomendado</span></div>
-        <div class="card-body">O parceiro ou time de Inbound credencia o cliente diretamente com o perfil AutoTEF (com micropos). O Stone Code já nasce com as chaves corretas, evitando erros de permissão.</div>
+        <div class="card-body">O parceiro ou time de Inbound credencia o cliente diretamente com o perfil AutoTEF (com micropos). O Stone Code já nasce com as chaves corretas.</div>
       </div>
       <div class="card">
         <div class="card-accent"></div>
         <div class="card-icon">🔄</div>
         <div class="card-title">Migração TEF → AutoTEF</div>
-        <div class="card-body">Para clientes que já usam TEF e desejam manter as taxas atuais. O parceiro acessa o <strong>Partner Hub</strong> e inclui a chave do Micro POS no cadastro do lojista.</div>
+        <div class="card-body">Para clientes que já usam TEF e desejam manter as taxas atuais. A habilitação da SAK de Microtef e a solicitação de migração devem ser feitas pelo parceiro junto ao time <a href="mailto:souparceiro@stone.com.br" class="link-green">souparceiro@stone.com.br</a>.</div>
       </div>
     </div>
   </div>
@@ -638,15 +680,22 @@
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <strong>Configuração no Sistema Local</strong>
-          <p>O parceiro realiza a configuração no sistema local do cliente utilizando os arquivos de produção fornecidos.</p>
+          <strong>Instalação do AutoTEF Slim</strong>
+          <p>Siga o guia oficial de instalação: <a href="https://autotef.readme.io/reference/instalando-o-slim" target="_blank" class="link-green">autotef.readme.io → Instalando o Slim</a>.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <strong>Troubleshooting (se falhar)</strong>
-          <p>Se a ativação falhar, o cliente deve ligar para a <strong>Central de Relacionamento</strong> e solicitar especificamente a <em>"Habilitação da SAK de Microtef"</em>.</p>
+          <strong>Configurações Iniciais — Ambiente de Produção</strong>
+          <p>Nas <a href="https://autotef.readme.io/reference/configura%C3%A7%C3%B5es-iniciais" target="_blank" class="link-green">configurações iniciais</a>, certifique-se de setar o ambiente como <strong>produção</strong>. Usar ambiente de homologação é causa frequente de falha silenciosa.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Troubleshooting — Erro na Ativação</strong>
+          <p>Se a ativação falhar mesmo com o Stone Code correto, o parceiro deve acionar o time <a href="mailto:souparceiro@stone.com.br" class="link-green">souparceiro@stone.com.br</a> para verificar a habilitação da SAK de Microtef ou solicitar novo credenciamento com o perfil AutoTEF correto.</p>
         </div>
       </div>
     </div>
@@ -656,10 +705,16 @@
 
   <!-- Suporte -->
   <div class="section-block">
-    <div class="section-title">Suporte Escalado</div>
-    <div class="highlight-box">
-      <h3>🎫 Abertura de Ticket via Guru</h3>
-      <p>Se o problema persistir após a ativação da SAK, abra um ticket via <strong>Guru</strong> no Partner Hub direcionado ao time de <strong>Integrações</strong>. Inclua o Stone Code do cliente e o histórico de tentativas de ativação para agilizar o atendimento.</p>
+    <div class="section-title">Suporte Escalado via Guru</div>
+    <div class="guru-support">
+      <div class="guru-img-card">
+        <!-- Substitua o placeholder abaixo por: <img src="sua-foto.png" alt="Tutorial Guru"> -->
+        <img src="guru.png" alt="Guru">
+      </div>
+      <div class="highlight-box" style="flex:1">
+        <h3>🎫 Abertura de Ticket via Guru — <a href="https://partnerhub.stone.com.br/#/" target="_blank" style="color:var(--green-main);text-decoration:none;border-bottom:1px solid rgba(148,234,98,0.4)">Partner Hub</a></h3>
+        <p>Se o problema persistir mesmo com o Stone Code correto, abra um ticket via <strong>Guru</strong> no Partner Hub direcionado ao time de <strong>Integrações</strong>. É obrigatório anexar os <strong>logs de ativação</strong> — sem eles o chamado não será processado. Inclua também o Stone Code do cliente e o histórico de tentativas.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -673,70 +728,69 @@
     <div class="slide-header-text">
       <span class="slide-tag">Pós-Homologação</span>
       <h2>Guia de Habilitação<br>Connect Stone</h2>
-      <p class="slide-subtitle">Instrua o parceiro sobre como habilitar a solução Connect Stone para clientes da base via Partner Hub.</p>
+      <p class="slide-subtitle">Instrua o parceiro sobre como habilitar a solução Connect Stone para qualquer cliente via Partner Hub — sem necessidade de chamado ou aprovação manual.</p>
     </div>
   </div>
 
-  <!-- Partner Hub -->
+  <!-- Métodos de Liberação -->
   <div class="section-block">
-    <div class="section-title">Gestão via Partner Hub</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-accent"></div>
-        <div class="card-icon">🏢</div>
-        <div class="card-title">Ferramenta Central</div>
-        <div class="card-body">O Partner Hub é a plataforma central para gerir a carteira e o status de todas as integrações. A liberação do Connect Stone é feita diretamente na aba de integrações.</div>
+    <div class="section-title">Métodos de Liberação (Escolha um)</div>
+    <div class="method-grid">
+
+      <div class="method-card">
+        <div class="method-head">
+          <div class="method-head-icon">🛒</div>
+          <div class="method-head-title">Via Funil de Vendas</div>
+        </div>
+        <div class="method-body">
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>Realizado durante o <strong>credenciamento de um novo cliente</strong> pelo parceiro ou pelo time de Inbound.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>No próprio ato do credenciamento é possível <strong>ativar o Connect Stone</strong> e, ao finalizar, já coletar a chave secreta <code style="background:var(--green-pale);padding:1px 6px;border-radius:4px;font-size:0.8rem">sk_...</code>.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">→</div>
+            <span>Ideal para garantir que o cliente entre na base já com o produto ativo.</span>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-accent"></div>
-        <div class="card-icon">🔓</div>
-        <div class="card-title">Acesso Direto</div>
-        <div class="card-body">A habilitação não exige chamado ou aprovação manual. O parceiro tem autonomia para liberar o produto para os lojistas de sua carteira a qualquer momento.</div>
+
+      <div class="method-card">
+        <div class="method-head">
+          <div class="method-head-icon">⚙️</div>
+          <div class="method-head-title">Via Ativação de Produto</div>
+        </div>
+        <div class="method-body">
+          <div class="method-step">
+            <div class="method-step-dot">1</div>
+            <span>Acesse o <a href="https://partnerhub.stone.com.br/#/" target="_blank" class="link-green">Partner Hub</a> com suas credenciais.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">2</div>
+            <span>Navegue até <strong>Integrações → Ativação de Produto</strong>.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">3</div>
+            <span>Localize e selecione a solução <strong>Connect Stone homologada</strong>.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">4</div>
+            <span>Clique em <strong>"Adicionar Lojista"</strong> e insira os dados do cliente.</span>
+          </div>
+          <div class="method-step">
+            <div class="method-step-dot">5</div>
+            <span>Colete a chave secreta <code style="background:rgba(148,234,98,0.12);padding:1px 6px;border-radius:4px;font-size:0.8rem;color:var(--green-main)">sk_...</code> gerada — ela é necessária para a vinculação no sistema do parceiro.</span>
+          </div>
+        </div>
       </div>
+
     </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Passo a Passo -->
-  <div class="section-block">
-    <div class="section-title">Passo a Passo para Liberação</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <strong>Acesse o Partner Hub</strong>
-          <p>Entre com suas credenciais de parceiro no Partner Hub.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <strong>Navegue até Integrações</strong>
-          <p>Vá em <strong>Integrações → Minhas Integrações</strong> no menu principal.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <strong>Selecione o Connect Stone</strong>
-          <p>Localize e selecione a solução <strong>Connect Stone homologada</strong> na lista de integrações disponíveis.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <strong>Adicionar Lojista</strong>
-          <p>Clique em <strong>"Adicionar Lojista"</strong> para iniciar o processo de habilitação do produto para o cliente.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <strong>Inserir Dados e Coletar Chave</strong>
-          <p>Insira os dados do cliente para habilitar o produto e colete a <strong>chave necessária</strong> para a ativação final no sistema do lojista.</p>
-        </div>
-      </div>
+    <div class="alert info" style="margin-top:20px;">
+      <div class="alert-icon">💡</div>
+      <div class="alert-text"><strong>Abrangência:</strong> A liberação pode ser feita para <strong>qualquer cliente</strong>, não apenas os da carteira do parceiro. A habilitação é autônoma e imediata.</div>
     </div>
   </div>
 
@@ -750,7 +804,14 @@
         <span>Após a homologação, quando o produto fica disponível para liberação no Hub?</span>
         <span class="faq-badge">Prazo</span>
       </div>
-      <div class="faq-a">O produto pode levar <strong>até 24 horas</strong> para aparecer disponível para liberação no Partner Hub após a conclusão da homologação.</div>
+      <div class="faq-a">O produto pode levar <strong>até 24 horas</strong> para aparecer disponível para liberação no Partner Hub após a conclusão da homologação. Se não aparecer após esse prazo, verifique se a homologação foi finalizada e aprovada antes de abrir chamado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Erro na ativação no portal — o que verificar?</span>
+        <span class="faq-badge">Erro</span>
+      </div>
+      <div class="faq-a">Verifique se o cliente <strong>já está ativo em outro parceiro</strong>. Um mesmo lojista não pode estar vinculado a dois parceiros simultaneamente para o mesmo produto. É necessário <strong>desativar no parceiro anterior</strong> antes de ativar no atual.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">
@@ -761,9 +822,20 @@
     </div>
   </div>
 
-  <div class="alert info">
-    <div class="alert-icon">💡</div>
-    <div class="alert-text"><strong>Dica:</strong> Se o Connect Stone não aparecer no Hub após 24h, verifique se a homologação foi finalizada e aprovada antes de abrir chamado de suporte.</div>
+  <div class="divider"></div>
+
+  <!-- Suporte Guru -->
+  <div class="section-block">
+    <div class="section-title">Suporte Escalado via Guru</div>
+    <div class="guru-support">
+      <div class="guru-img-card">
+        <img src="guru.png" alt="Guru">
+      </div>
+      <div class="highlight-box" style="flex:1">
+        <h3>🎫 Abertura de Ticket via Guru — <a href="https://partnerhub.stone.com.br/#/" target="_blank" style="color:var(--green-main);text-decoration:none;border-bottom:1px solid rgba(148,234,98,0.4)">Partner Hub</a></h3>
+        <p>Se o problema persistir mesmo com o Stone Code correto, abra um ticket via <strong>Guru</strong> no Partner Hub direcionado ao time de <strong>Integrações</strong>. É obrigatório anexar todas as evidencias possíveis do erro em questão — sem eles o chamado não será processado. Inclua também o Stone Code do cliente e o histórico de tentativas.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -776,7 +848,7 @@
     <div class="slide-header-text">
       <span class="slide-tag">Pós-Homologação</span>
       <h2>Guia de Distribuição<br>SDK Android</h2>
-      <p class="slide-subtitle">Detalha as três formas de disponibilizar um aplicativo Android homologado para os terminais Smart da Stone.</p>
+      <p class="slide-subtitle">Detalha as formas de disponibilizar um aplicativo Android homologado para os terminais Smart da Stone.</p>
     </div>
   </div>
 
@@ -788,7 +860,7 @@
         <div class="card-accent"></div>
         <div class="card-icon">🧪</div>
         <div class="card-title">Fase Piloto</div>
-        <div class="card-body">Após a homologação, o app entra automaticamente em fase de <strong>Piloto</strong>. Nesta etapa, o app é validado em ambiente controlado antes da liberação geral.</div>
+        <div class="card-body">Após a homologação, o app entra automaticamente em fase de <strong>Piloto</strong>. Nesta etapa, o app é validado pelo parceiro em ambiente controlado (por Stone Code) antes da liberação geral.</div>
       </div>
       <div class="card">
         <div class="card-accent"></div>
@@ -814,40 +886,15 @@
         <div class="method-body">
           <div class="method-step">
             <div class="method-step-dot">→</div>
-            <span>Realizado durante o credenciamento de um <strong>novo cliente</strong>.</span>
+            <span>Disponível durante o credenciamento de um <strong>novo cliente</strong> ou para clientes já credenciados que ainda não tiveram o app ativado.</span>
           </div>
           <div class="method-step">
             <div class="method-step-dot">→</div>
-            <span>Ideal para novos lojistas que já entram na base com o app instalado.</span>
+            <span>O parceiro acessa o funil do cliente no <a href="https://partnerhub.stone.com.br/#/" target="_blank" class="link-green">Partner Hub</a> e ativa o produto diretamente por lá.</span>
           </div>
           <div class="method-step">
             <div class="method-step-dot">→</div>
-            <span>Processo integrado ao fluxo de onboarding do cliente.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="method-card">
-        <div class="method-head">
-          <div class="method-head-icon">📋</div>
-          <div class="method-head-title">Via Lista de Lojistas</div>
-        </div>
-        <div class="method-body">
-          <div class="method-step">
-            <div class="method-step-dot">1</div>
-            <span>Menu: <strong>Lojistas → Pagamento → Listar Lojistas</strong></span>
-          </div>
-          <div class="method-step">
-            <div class="method-step-dot">2</div>
-            <span>Busque pelo <strong>CNPJ</strong> do cliente.</span>
-          </div>
-          <div class="method-step">
-            <div class="method-step-dot">3</div>
-            <span>Acesse a aba <strong>Ativação</strong> e selecione o App.</span>
-          </div>
-          <div class="method-step">
-            <div class="method-step-dot">4</div>
-            <span>Clique em <strong>Salvar</strong> para confirmar.</span>
+            <span>Ideal para ativação pontual por cliente.</span>
           </div>
         </div>
       </div>
@@ -860,11 +907,11 @@
         <div class="method-body">
           <div class="method-step">
             <div class="method-step-dot">1</div>
-            <span>Menu: <strong>Integrações → Ativação de Produto</strong></span>
+            <span>Acesse <strong>Integrações → Ativação de Produto</strong> no <a href="https://partnerhub.stone.com.br/#/" target="_blank" class="link-green">Partner Hub</a>.</span>
           </div>
           <div class="method-step">
             <div class="method-step-dot">2</div>
-            <span>Selecione o <strong>App</strong> na lista disponível.</span>
+            <span>Selecione o <strong>App homologado</strong> na lista disponível.</span>
           </div>
           <div class="method-step">
             <div class="method-step-dot">3</div>
@@ -872,7 +919,7 @@
           </div>
           <div class="method-step">
             <div class="method-step-dot">4</div>
-            <span>Insira o <strong>Stone Code</strong> do cliente e confirme.</span>
+            <span>Insira o <strong>Stone Code</strong> e o <strong>CNPJ</strong> do cliente e confirme.</span>
           </div>
         </div>
       </div>
@@ -888,20 +935,20 @@
     <div class="cards-grid">
       <div class="card">
         <div class="card-accent"></div>
-        <div class="card-icon">📥</div>
-        <div class="card-title">Onde Encontrar o App?</div>
-        <div class="card-body">Após a liberação, o app aparecerá na maquininha em: <strong>Menu → Apps</strong>. O cliente pode baixar diretamente pelo terminal.</div>
+        <div class="card-icon">📲</div>
+        <div class="card-title">Instalação Automática</div>
+        <div class="card-body">Após a liberação, o app é <strong>instalado automaticamente</strong> na maquininha. O terminal precisa estar <strong>conectado ao Wi-Fi</strong> para receber a atualização.</div>
       </div>
       <div class="card">
         <div class="card-accent"></div>
         <div class="card-icon">⏱️</div>
         <div class="card-title">Tempo de Sincronização</div>
-        <div class="card-body">Após a liberação no Hub, o app aparece na máquina em <strong>até 3 horas</strong>. Na prática, geralmente é imediato ou em poucos minutos.</div>
+        <div class="card-body">Após a liberação no Hub, o app aparece na máquina em <strong>até 3 horas</strong>. Caso precise da instalação de imediato, reinicie o terminal.</div>
       </div>
     </div>
-    <div class="alert info" style="margin-top:20px;">
-      <div class="alert-icon">💡</div>
-      <div class="alert-text"><strong>Dica:</strong> Se o app não aparecer no prazo esperado, <strong>reinicie o terminal</strong> ou force a busca por atualizações nas configurações da maquininha.</div>
+    <div class="alert warning" style="margin-top:20px;">
+      <div class="alert-icon">📶</div>
+      <div class="alert-text"><strong>Atenção:</strong> O terminal deve estar obrigatoriamente conectado ao <strong>Wi-Fi</strong> para receber a instalação. Se o app não aparecer no prazo esperado, confirme a conexão e <strong>reinicie o terminal</strong>.</div>
     </div>
   </div>
 
@@ -912,14 +959,23 @@
     <div class="section-title">Verificação de Hardware</div>
     <div class="highlight-box">
       <h3>🖥️ Compatibilidade do Terminal</h3>
-      <p>Certifique-se de que o <strong>modelo da maquininha do cliente</strong> é compatível com o modelo informado e testado durante o processo de homologação. Incompatibilidades de hardware podem causar falhas na instalação ou no funcionamento do app mesmo após a liberação correta no Hub.</p>
+      <p>Certifique-se de que o <strong>modelo da maquininha do cliente</strong> é compatível com os modelos selecionados durante o processo de homologação. Incompatibilidades de hardware podem causar falhas na instalação ou no funcionamento do app mesmo após a liberação correta no Hub.</p>
     </div>
+  </div>
 
-    <div class="pill-list" style="margin-top:24px;">
-      <div class="pill"><span class="pill-dot"></span> Modelo homologado = modelo em campo</div>
-      <div class="pill"><span class="pill-dot"></span> Verificar versão do firmware</div>
-      <div class="pill"><span class="pill-dot"></span> Terminal compatível com SDK</div>
-      <div class="pill"><span class="pill-dot"></span> Terminal Smart (não convencional)</div>
+  <div class="divider"></div>
+
+  <!-- Suporte Guru -->
+  <div class="section-block">
+    <div class="section-title">Suporte Escalado via Guru</div>
+    <div class="guru-support">
+      <div class="guru-img-card">
+        <img src="guru.png" alt="Guru">
+      </div>
+      <div class="highlight-box" style="flex:1">
+        <h3>🎫 Abertura de Ticket via Guru — <a href="https://partnerhub.stone.com.br/#/" target="_blank" style="color:var(--green-main);text-decoration:none;border-bottom:1px solid rgba(148,234,98,0.4)">Partner Hub</a></h3>
+        <p>Se houver algum problema no processo, abra um ticket via <strong>Guru</strong> no Partner Hub direcionado ao time de <strong>Integrações</strong>. É obrigatório anexar todas as evidencias possiveis do erro em questão — sem elas o chamado não será processado. Inclua também o Stone Code do cliente e o histórico de tentativas.</p>
+      </div>
     </div>
   </div>
 </section>
